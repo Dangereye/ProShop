@@ -1,9 +1,19 @@
-import React from "react";
-import products from "../products";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import StarRating from "../components/shared/StarRating";
+
 const ProductDetails = ({ match }) => {
-  const product = products.find((product) => product._id === match.params.id);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(data);
+    };
+    fetchProduct();
+  }, [match.params.id]);
+
   return (
     <div className="container container__sidebar">
       <div className="content">
