@@ -1,9 +1,12 @@
 @import "partials/variables";
 @import "partials/typography";
+@import "partials/buttons";
 @import "partials/global";
 
 @import "components/layout/header";
 @import "components/layout/navbar";
+@import "components/layout/sidebar";
 @import "components/layout/footer";
 
 @import "components/shared/products";
+@import "components/shared/product-details";

@@ -14,7 +14,7 @@ const Product = ({ product }) => {
       </Link>
       <div className="product__body">
         <Link to={`/product/${product._id}`}>
-          <h3 className="product__title">{product.name}</h3>
+          <h3>{product.name}</h3>
         </Link>
         <StarRating
           value={product.rating}

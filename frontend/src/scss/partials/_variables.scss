@@ -1,5 +1,5 @@
 // Page width
-$containerWidth: 180rem;
+$containerWidth: 144rem;
 
 // Page padding
 $desktopPadding: 4rem;
@@ -8,12 +8,12 @@ $mobilePadding: 1.6rem;
 
 // Backgrounds
 $bgDark: #000;
+$bgDark2: lighten($bgDark, 5%);
 $bgDark2: lighten($bgDark, 10%);
-$bgDark2: lighten($bgDark, 20%);
 
 $bgLight: #fff;
-$bgLight2: darken($bgLight, 10%);
-$bgLight2: darken($bgLight, 20%);
+$bgLight2: darken($bgLight, 5%);
+$bgLight3: darken($bgLight, 10%);
 
 // Text
 $textLight: #fff;

@@ -12,3 +12,28 @@ h1 {
   font-weight: 200;
   font-style: italic;
 }
+
+h2 {
+  font-weight: 300;
+  font-style: italic;
+}
+
+h3 {
+  color: $textDark;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+@media (max-width: 420px) {
+  h1,
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-height: 420px) {
+  h1,
+  h2 {
+    font-size: 2rem;
+  }
+}

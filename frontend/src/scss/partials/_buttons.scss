@@ -1,0 +1,53 @@
+button,
+.btn {
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  cursor: pointer;
+
+  &.block {
+    display: block;
+    width: 100%;
+    padding: 1.6rem;
+  }
+
+  &.back {
+    margin-bottom: 1.6rem;
+  }
+
+  &.small {
+    padding: 0.5rem 1rem;
+  }
+
+  &.light {
+    color: $textDark;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $bgLight2;
+    }
+  }
+
+  &.dark {
+    color: $textLight;
+    background-color: $bgDark;
+
+    &:hover {
+      background-color: $bgDark2;
+    }
+  }
+
+  &:disabled {
+    color: $textDark;
+    background-color: $bgLight3;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: $bgLight3;
+    }
+  }
+}

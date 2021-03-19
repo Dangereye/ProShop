@@ -1,0 +1,20 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  border: 1px solid $bgLight3;
+
+  &__details {
+    margin-bottom: 3rem;
+  }
+
+  &__group {
+    display: flex;
+    justify-content: space-between;
+
+    span:nth-child(2) {
+      font-weight: 500;
+    }
+  }
+}
