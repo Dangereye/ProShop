@@ -1,10 +1,21 @@
 import React from "react";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Home from "./pages/Home";
 const App = () => {
   return (
-    <>
-      <h1>Welcome to ProShop</h1>
-    </>
+    <Router>
+      <div className="app">
+        <Header />
+        <main>
+          <Switch>
+            <Route path="/" exact component={Home} />
+          </Switch>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

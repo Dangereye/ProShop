@@ -4,5 +4,48 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Global
+body {
+  font-size: 1.6rem;
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+header,
+main,
+footer {
+  padding-left: $desktopPadding;
+  padding-right: $desktopPadding;
+
+  @media (max-width: 768px) {
+    padding-left: $tabletPadding;
+    padding-right: $tabletPadding;
+  }
+
+  @media (max-width: 420px) {
+    padding-left: $mobilePadding;
+    padding-right: $mobilePadding;
+  }
+
+  @media (max-height: 420px) {
+    padding-left: $mobilePadding;
+    padding-right: $mobilePadding;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: $containerWidth;
 }

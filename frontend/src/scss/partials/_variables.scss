@@ -1,0 +1,15 @@
+// Page width
+$containerWidth: 180rem;
+
+// Page padding
+$desktopPadding: 4rem;
+$tabletPadding: 2.4rem;
+$mobilePadding: 1.6rem;
+
+// Backgrounds
+$bgDark: #000;
+
+// Text
+$textLight: #fff;
+$textLight2: darken($textLight, 10%);
+$textLight3: darken($textLight2, 10%);

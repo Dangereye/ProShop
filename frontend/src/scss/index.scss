@@ -1,2 +1,7 @@
+@import "partials/variables";
+@import "partials/typography";
 @import "partials/global";
-@import "partials/typography"; 
+
+@import "components/header";
+@import "components/navbar";
+@import "components/footer";
