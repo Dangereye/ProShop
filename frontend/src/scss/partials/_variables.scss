@@ -8,8 +8,18 @@ $mobilePadding: 1.6rem;
 
 // Backgrounds
 $bgDark: #000;
+$bgDark2: lighten($bgDark, 10%);
+$bgDark2: lighten($bgDark, 20%);
+
+$bgLight: #fff;
+$bgLight2: darken($bgLight, 10%);
+$bgLight2: darken($bgLight, 20%);
 
 // Text
 $textLight: #fff;
 $textLight2: darken($textLight, 10%);
-$textLight3: darken($textLight2, 10%);
+$textLight3: darken($textLight, 20%);
+
+$textDark: #000;
+$textDark2: lighten($textDark, 10%);
+$textDark3: lighten($textDark, 20%);

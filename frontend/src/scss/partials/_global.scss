@@ -14,6 +14,7 @@ a {
 // Global
 body {
   font-size: 1.6rem;
+  color: $textDark2;
 }
 
 .app {
@@ -42,6 +43,11 @@ footer {
     padding-left: $mobilePadding;
     padding-right: $mobilePadding;
   }
+}
+
+main {
+  padding-top: 3rem;
+  padding-top: 3rem;
 }
 
 .container {

@@ -2,6 +2,8 @@
 @import "partials/typography";
 @import "partials/global";
 
-@import "components/header";
-@import "components/navbar";
-@import "components/footer";
+@import "components/layout/header";
+@import "components/layout/navbar";
+@import "components/layout/footer";
+
+@import "components/shared/products";

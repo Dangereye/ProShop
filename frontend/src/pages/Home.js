@@ -1,9 +1,16 @@
 import React from "react";
+import products from "../products";
+import Product from "../components/shared/Product";
 
 const Home = () => {
   return (
     <div className="container">
-      <h1>Welcome to ProShop</h1>
+      <h1>Latest Products</h1>
+      <div className="products">
+        {products.map((product, index) => {
+          return <Product product={product} />;
+        })}
+      </div>
     </div>
   );
 };
