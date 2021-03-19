@@ -28,6 +28,17 @@
     margin: 1rem 0;
     color: $textDark3;
     font-size: 1.4rem;
+
+    .star {
+      margin-right: 0.3rem;
+      svg {
+        fill: $starColor;
+      }
+    }
+
+    .text {
+      margin-left: 0.7rem;
+    }
   }
 
   &__price {

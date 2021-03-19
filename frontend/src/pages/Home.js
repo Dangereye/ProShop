@@ -8,7 +8,7 @@ const Home = () => {
       <h1>Latest Products</h1>
       <div className="products">
         {products.map((product, index) => {
-          return <Product product={product} />;
+          return <Product key={`product-${index}`} product={product} />;
         })}
       </div>
     </div>
