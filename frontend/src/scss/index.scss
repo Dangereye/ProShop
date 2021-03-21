@@ -8,5 +8,8 @@
 @import "components/layout/sidebar";
 @import "components/layout/footer";
 
-@import "components/shared/products";
-@import "components/shared/product-details";
+@import "components/products/products";
+@import "components/products/product-details";
+
+@import "components/shared/loader";
+@import "components/shared/message";

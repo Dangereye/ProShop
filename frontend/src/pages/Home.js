@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
-import Product from "../components/shared/Product";
+import Product from "../components/products/Product";
+import Loader from "../components/shared/Loader";
+import Message from "../components/shared/Message";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,8 +16,8 @@ const Home = () => {
   return (
     <div className="container">
       <h1>Latest Products</h1>
-      {loading && <p>Just a moment..</p>}
-      {error && <p>{error}</p>}
+      {loading && <Loader text="Fetching products.." />}
+      {error && <Message text={error} error={true} />}
       {products && (
         <div className="products">
           {products.map((product, index) => {

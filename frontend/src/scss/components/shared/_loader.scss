@@ -1,0 +1,23 @@
+.loader {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+
+  &__spinner {
+    width: 2.4rem;
+    height: 2.4rem;
+    animation: spinner 0.4s linear infinite forwards;
+  }
+  &__text {
+    margin-left: 1rem;
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

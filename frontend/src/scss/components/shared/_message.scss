@@ -1,0 +1,22 @@
+.message {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: $infoColor;
+  border: 1px solid $infoColor;
+
+  &.error {
+    color: $errorColor;
+    border-color: $errorColor;
+  }
+
+  &__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-right: 1rem;
+  }
+
+  &__text {
+    font-weight: 500;
+  }
+}
