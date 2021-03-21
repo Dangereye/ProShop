@@ -9,6 +9,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
@@ -16,9 +17,11 @@ const Home = () => {
   return (
     <div className="container">
       <h1>Latest Products</h1>
-      {loading && <Loader text="Fetching products.." />}
-      {error && <Message text={error} error={true} />}
-      {products && (
+      {loading ? (
+        <Loader text="Fetching products.." />
+      ) : error ? (
+        <Message text={error} error={true} />
+      ) : (
         <div className="products">
           {products.map((product, index) => {
             return <Product key={`product-${index}`} product={product} />;
