@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails } from "../actions/productActions";
+import { addToCart } from "../actions/cartActions";
 import StarRating from "../components/products/StarRating";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
+import SidebarGroup from "../components/sidebar/SidebarGroup";
 
-const ProductDetails = ({ match }) => {
+const ProductDetails = ({ history, match }) => {
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -14,6 +17,11 @@ const ProductDetails = ({ match }) => {
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match]);
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product._id, qty));
+    history.push("/cart");
+  };
 
   return (
     <>
@@ -44,19 +52,33 @@ const ProductDetails = ({ match }) => {
           {/* Sidebar */}
           <div className="sidebar">
             <div className="sidebar__details">
-              <div className="sidebar__group">
-                <span>Price</span>
-                <span>£{product.price}</span>
-              </div>
-              <div className="sidebar__group">
-                <span>Status</span>
-                <span>
-                  {product.countInStock > 0 ? "In stock" : "Out of stock"}
-                </span>
-              </div>
+              <SidebarGroup label="Price" value={`£${product.price}`} />
+              <SidebarGroup
+                label="Status"
+                value={product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
+              />
+              <SidebarGroup label="Available" value={product.countInStock} />
+              {product.countInStock > 0 && (
+                <SidebarGroup
+                  label="Qty"
+                  value={
+                    <select
+                      value={qty}
+                      onChange={(e) => setQty(e.target.value)}
+                    >
+                      {[...Array(product.countInStock).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                    </select>
+                  }
+                />
+              )}
             </div>
-
             <button
+              type="button"
+              onClick={handleAddToCart}
               className="dark block"
               disabled={product.countInStock === 0}
             >

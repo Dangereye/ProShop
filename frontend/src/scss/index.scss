@@ -1,5 +1,6 @@
 @import "partials/variables";
 @import "partials/typography";
+@import "partials/forms";
 @import "partials/buttons";
 @import "partials/global";
 
@@ -10,6 +11,7 @@
 
 @import "components/products/products";
 @import "components/products/product-details";
+@import "components/products/shopping-cart";
 
 @import "components/shared/loader";
 @import "components/shared/message";

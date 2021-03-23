@@ -1,0 +1,42 @@
+.shopping-cart {
+  padding: 2rem 0;
+
+  .cart-item {
+    padding: 2rem;
+    border: 1px solid $bgLight3;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    img {
+      width: 8.5rem;
+      height: 8.5rem;
+      object-fit: cover;
+      margin-right: 1.6rem;
+    }
+
+    &__details {
+      flex: 1 1 80rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      h3 {
+        margin-right: 1.6rem;
+      }
+
+      &__group {
+        margin: 1rem 0;
+        width: max-content;
+        display: flex;
+        align-items: center;
+
+        > *:not(:last-child) {
+          margin-right: 1.6rem;
+          justify-self: flex-start;
+        }
+      }
+    }
+  }
+}

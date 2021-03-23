@@ -8,8 +8,8 @@
   border: 1px solid $infoColor;
 
   &.error {
-    color: $errorColor;
-    border-color: $errorColor;
+    color: $dangerColor;
+    border-color: $dangerColor;
   }
 
   &__icon {

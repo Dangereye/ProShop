@@ -9,7 +9,7 @@ const Navbar = () => {
         ProShop
       </Link>
       <div className="nav-menu">
-        <Link className="nav-menu__link" to="/">
+        <Link className="nav-menu__link" to="/cart">
           <MdShoppingCart />
           <span>Cart</span>
         </Link>

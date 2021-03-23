@@ -23,6 +23,20 @@ button,
     padding: 0.5rem 1rem;
   }
 
+  &.cart-delete {
+    width: 3.1rem;
+    height: 3.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      width: 1.6rem;
+    }
+    color: $dangerColor;
+    background-color: transparent;
+    border: 1px solid $dangerColor;
+  }
+
   &.light {
     color: $textDark;
     background-color: transparent;
