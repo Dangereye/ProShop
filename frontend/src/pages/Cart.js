@@ -1,5 +1,5 @@
 import React from "react";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, removeFromCart } from "../actions/cartActions";
 import { Link } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,8 +11,9 @@ const Cart = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  const removeFromCart = () => {
-    console.log("Item removed");
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
+    history.push("/cart");
   };
 
   const handleCheckout = () => {
@@ -50,7 +51,10 @@ const Cart = ({ history }) => {
                         ))}
                       </select>
                     </div>
-                    <button className="cart-delete" onClick={removeFromCart}>
+                    <button
+                      className="cart-delete"
+                      onClick={() => handleRemoveFromCart(item.id)}
+                    >
                       <FaRegTrashAlt />
                     </button>
                   </div>
