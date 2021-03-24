@@ -18,14 +18,16 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
+
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-    localStorage.setItem("userInfo", Json.stringify(data));
+
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:
         error.response && error.response.data.message
-          ? error.response.message
+          ? error.response.data.message
           : error.message,
     });
   }
