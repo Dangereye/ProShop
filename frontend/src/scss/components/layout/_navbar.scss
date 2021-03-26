@@ -25,19 +25,72 @@ nav {
       margin-right: 2rem;
     }
 
-    &__link {
+    &__link,
+    &__user {
       display: flex;
       align-items: center;
+      color: $textLight3;
+      fill: $textLight3;
+      transition: 0.4s;
 
-      svg {
-        margin-right: 0.5rem;
-        fill: $textLight3;
+      &:hover {
+        color: $textLight;
+        fill: $textLight;
       }
 
       span {
-        color: $textLight3;
+        color: inherit;
         font-weight: 400;
         letter-spacing: 0.5px;
+      }
+
+      svg {
+        fill: inherit;
+      }
+    }
+
+    &__Link {
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+
+    &__user {
+      position: relative;
+      cursor: pointer;
+      svg {
+        margin-left: 0.5rem;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $bgLight;
+        border: 1px solid $bgLight3;
+        > *:not(:last-child) {
+          border-bottom: 1px solid $bgLight3;
+        }
+
+        a {
+          display: block;
+        }
+
+        div {
+          cursor: pointer;
+        }
+
+        a,
+        div {
+          padding: 1rem 6rem 1rem 2rem;
+          text-transform: capitalize;
+          color: $textDark2;
+
+          &:hover {
+            background-color: $bgLight2;
+          }
+        }
       }
     }
   }
