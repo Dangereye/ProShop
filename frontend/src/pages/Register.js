@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../actions/userActions";
+import { register } from "../actions/userActions";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 
-const Login = ({ location, history }) => {
+const Register = ({ location, history }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
@@ -23,16 +26,32 @@ const Login = ({ location, history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match.");
+    } else {
+      setMessage(null);
+      dispatch(register(name, email, password));
+    }
   };
 
   return (
     <div className="container">
       <div className="form-container">
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         {loading && <Loader text="One moment please.." />}
+        {message && <Message text={message} error={true} />}
         {error && <Message text={error} error={true} />}
         <form onSubmit={handleSubmit}>
+          <div className="input__group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
           <div className="input__group">
             <label htmlFor="email">Email Address</label>
             <input
@@ -53,18 +72,27 @@ const Login = ({ location, history }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-
+          <div className="input__group">
+            <label htmlFor="password">Confirm password</label>
+            <input
+              type="password2"
+              id="password2"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
           <button type="submit" className="medium dark">
-            Sign In
+            Sign Up
           </button>
         </form>
         <div className="x">
-          New Customer?{" "}
+          Existing customer?{" "}
           <Link
             className="text-link"
-            to={redirect ? `/register?redirect=${redirect}` : "/register"}
+            to={redirect ? `/login?redirect=${redirect}` : "/login"}
           >
-            Register
+            Sign in
           </Link>
         </div>
       </div>
@@ -72,4 +100,4 @@ const Login = ({ location, history }) => {
   );
 };
 
-export default Login;
+export default Register;

@@ -28,14 +28,14 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("That email is already registered.");
   }
-  const user = User.create({
+  const user = await User.create({
     name,
     email,
     password,
   });
 
   if (user) {
-    res.status(202).json({
+    res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
