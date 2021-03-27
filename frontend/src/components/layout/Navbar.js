@@ -36,7 +36,7 @@ const Navbar = () => {
             <IoMdArrowDropdown />
             {isProfile && (
               <div className="dropdown">
-                <Link to="/users/profile">Profile</Link>
+                <Link to="/profile">Profile</Link>
                 <div onClick={handleLogout}>Logout</div>
               </div>
             )}
