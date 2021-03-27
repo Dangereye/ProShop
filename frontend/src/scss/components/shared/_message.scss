@@ -12,6 +12,11 @@
     border-color: $dangerColor;
   }
 
+  &.success {
+    color: $successColor;
+    border-color: $successColor;
+  }
+
   &__icon {
     width: 2.4rem;
     min-width: 2.4rem;

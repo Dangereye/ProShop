@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDetails, userLogin } from "../actions/userActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 
@@ -17,6 +17,9 @@ const UserProfile = ({ location, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
@@ -37,7 +40,7 @@ const UserProfile = ({ location, history }) => {
       setMessage("Passwords do not match.");
     } else {
       setMessage(null);
-      //   DISPATCH UPDATE PROFILE
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
@@ -47,6 +50,7 @@ const UserProfile = ({ location, history }) => {
         <h2>User Profile</h2>
         {loading && <Loader text="One moment please.." />}
         {message && <Message text={message} error={true} />}
+        {success && <Message text="Profile updated." success={true} />}
         {error && <Message text={error} error={true} />}
         <form onSubmit={handleSubmit}>
           <div className="input__group">
@@ -74,7 +78,7 @@ const UserProfile = ({ location, history }) => {
             <input
               type="password"
               id="password"
-              placeholder="Enter password"
+              placeholder="Enter new password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -82,9 +86,9 @@ const UserProfile = ({ location, history }) => {
           <div className="input__group">
             <label htmlFor="password">Confirm password</label>
             <input
-              type="password2"
+              type="password"
               id="password2"
-              placeholder="Confirm password"
+              placeholder="Confirm new password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />

@@ -1,9 +1,13 @@
 import React from "react";
 import { BiErrorCircle } from "react-icons/bi";
 
-const Message = ({ text, error }) => {
+const Message = ({ text, error, success }) => {
   return (
-    <div className={error ? "message error" : "message"}>
+    <div
+      className={
+        error ? "message error" : success ? "message success" : "message"
+      }
+    >
       {error && <BiErrorCircle className="message__icon" />}
       <span className="message__text">{text}</span>
     </div>
@@ -12,6 +16,7 @@ const Message = ({ text, error }) => {
 
 Message.defaultProps = {
   error: false,
+  success: false,
 };
 
 export default Message;
