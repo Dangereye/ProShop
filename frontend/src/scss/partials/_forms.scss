@@ -10,7 +10,7 @@ select {
   font-family: "Poppins", sans-serif;
 }
 
-.input__group {
+.input-group {
   padding: 1rem 0;
 
   label {
@@ -18,14 +18,25 @@ select {
     display: block;
     font-weight: 500;
   }
+
+  input {
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: $bgLight3;
+  }
 }
 
-input {
-  font-size: 1.6rem;
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  background-color: $bgLight3;
+.radio-group {
+  padding: 1rem 0;
+
+  label {
+    font-weight: 500;
+  }
+  input {
+    margin-right: 1rem;
+  }
 }
 
 select {

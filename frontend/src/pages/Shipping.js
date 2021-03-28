@@ -26,7 +26,7 @@ const Shipping = ({ history }) => {
         <CheckoutSteps step1 step2 />
         <h1>Shipping</h1>
         <form onSubmit={handleSubmit}>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="name">Address</label>
             <input
               type="text"

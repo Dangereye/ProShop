@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
 import Shipping from "./pages/Shipping";
+import Payment from "./pages/Payment";
 const App = () => {
   return (
     <Router>
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/register" component={Register} />
             <Route path="/profile" component={UserProfile} />
             <Route path="/shipping" component={Shipping} />
+            <Route path="/payment" component={Payment} />
           </Switch>
         </main>
         <Footer />
