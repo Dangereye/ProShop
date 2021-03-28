@@ -77,3 +77,8 @@ form button[type="submit"] {
 a.text-link {
   color: orangered;
 }
+
+a[disabled] {
+  pointer-events: none;
+  color: $textLight3;
+}

@@ -8,6 +8,7 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UserProfile from "./pages/UserProfile";
+import Shipping from "./pages/Shipping";
 const App = () => {
   return (
     <Router>
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/profile" component={UserProfile} />
+            <Route path="/shipping" component={Shipping} />
           </Switch>
         </main>
         <Footer />
