@@ -21,9 +21,11 @@ const PlaceOrder = () => {
   );
   const taxPrice = addDecimals(0.2 * itemsPrice);
   const shippingPrice = 4.99;
-  const totalPrice = parseFloat(itemsPrice + taxPrice + shippingPrice).toFixed(
-    2
-  );
+  const totalPrice = (
+    Number(itemsPrice) +
+    Number(taxPrice) +
+    Number(shippingPrice)
+  ).toFixed(2);
 
   const handlePlaceOrder = () => {
     console.log("Order placed");
