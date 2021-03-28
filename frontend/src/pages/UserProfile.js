@@ -45,61 +45,63 @@ const UserProfile = ({ location, history }) => {
   };
 
   return (
-    <div className="container container__profile">
-      <div className="form-container">
-        <h2>User Profile</h2>
-        {loading && <Loader text="One moment please.." />}
-        {message && <Message text={message} error={true} />}
-        {success && <Message text="Profile updated." success={true} />}
-        {error && <Message text={error} error={true} />}
-        <form onSubmit={handleSubmit}>
-          <div className="input__group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="input__group">
-            <label htmlFor="email">Email Address</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="input__group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter new password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="input__group">
-            <label htmlFor="password">Confirm password</label>
-            <input
-              type="password"
-              id="password2"
-              placeholder="Confirm new password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
-          <button type="submit" className="medium dark">
-            Update
-          </button>
-        </form>
-      </div>
-      <div className="orders">
-        <h2>My Orders</h2>
+    <div className="container">
+      <div className="profile-grid">
+        <div className="form-container">
+          <h2>User Profile</h2>
+          {loading && <Loader text="One moment please.." />}
+          {message && <Message text={message} error={true} />}
+          {success && <Message text="Profile updated." success={true} />}
+          {error && <Message text={error} error={true} />}
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter new password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Confirm password</label>
+              <input
+                type="password"
+                id="password2"
+                placeholder="Confirm new password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <button type="submit" className="medium dark">
+              Update
+            </button>
+          </form>
+        </div>
+        <div className="orders">
+          <h2>My Orders</h2>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../actions/cartActions";
-import CheckoutSteps from "../components/shipping/CheckoutSteps";
+import CheckoutSteps from "../components/checkout/CheckoutSteps";
 
 const Shipping = ({ history }) => {
   const cart = useSelector((state) => state.cart);
@@ -37,7 +37,7 @@ const Shipping = ({ history }) => {
               required
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="name">City</label>
             <input
               type="text"
@@ -48,7 +48,7 @@ const Shipping = ({ history }) => {
               required
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="name">Postal Code</label>
             <input
               type="text"
@@ -59,7 +59,7 @@ const Shipping = ({ history }) => {
               required
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="name">Country</label>
             <input
               type="text"

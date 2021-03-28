@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
-import CheckoutSteps from "../components/shipping/CheckoutSteps";
+import CheckoutSteps from "../components/checkout/CheckoutSteps";
 
 const Payment = ({ history }) => {
   const cart = useSelector((state) => state.cart);

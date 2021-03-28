@@ -42,7 +42,7 @@ const Register = ({ location, history }) => {
         {message && <Message text={message} error={true} />}
         {error && <Message text={error} error={true} />}
         <form onSubmit={handleSubmit}>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -52,7 +52,7 @@ const Register = ({ location, history }) => {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
@@ -62,7 +62,7 @@ const Register = ({ location, history }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -72,7 +72,7 @@ const Register = ({ location, history }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="password">Confirm password</label>
             <input
               type="password2"

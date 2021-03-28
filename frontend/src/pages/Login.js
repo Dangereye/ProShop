@@ -33,7 +33,7 @@ const Login = ({ location, history }) => {
         {loading && <Loader text="One moment please.." />}
         {error && <Message text={error} error={true} />}
         <form onSubmit={handleSubmit}>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
@@ -43,7 +43,7 @@ const Login = ({ location, history }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="input__group">
+          <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"

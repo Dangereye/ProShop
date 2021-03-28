@@ -30,60 +30,65 @@ const ProductDetails = ({ history, match }) => {
       ) : error ? (
         <Message text={error} error={true} />
       ) : (
-        <div className="container container__sidebar">
-          <div className="content">
-            <Link className="btn back small light" to="/">
-              Go Back
-            </Link>
-            <div className="product-details">
-              <img src={product.image} alt={product.name} />
-              <div className="product-details__text">
-                <h2>{product.name}</h2>
-                <StarRating
-                  value={product.rating}
-                  text={`${product.numReviews} reviews`}
-                />
-                <div className="product__price">£{product.price}</div>
-                <p className="product__description">{product.description}</p>
+        <div className="container">
+          <button
+            className="btn back small light"
+            onClick={() => history.goBack()}
+          >
+            Go Back
+          </button>
+          <div className="sidebar-grid">
+            <div className="content">
+              <div className="product-details">
+                <img src={product.image} alt={product.name} />
+                <div className="product-details__text">
+                  <h2>{product.name}</h2>
+                  <StarRating
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
+                  <div className="product__price">£{product.price}</div>
+                  <p className="product__description">{product.description}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Sidebar */}
-          <div className="sidebar">
-            <div className="sidebar__details">
-              <SidebarGroup label="Price" value={`£${product.price}`} />
-              <SidebarGroup
-                label="Status"
-                value={product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
-              />
-              <SidebarGroup label="Available" value={product.countInStock} />
-              {product.countInStock > 0 && (
+            {/* Sidebar */}
+            <div className="sidebar">
+              <div className="sidebar__details">
+                <SidebarGroup label="Price" value={`£${product.price}`} />
                 <SidebarGroup
-                  label="Qty"
-                  value={
-                    <select
-                      value={qty}
-                      onChange={(e) => setQty(e.target.value)}
-                    >
-                      {[...Array(product.countInStock).keys()].map((x) => (
-                        <option key={x + 1} value={x + 1}>
-                          {x + 1}
-                        </option>
-                      ))}
-                    </select>
-                  }
+                  label="Status"
+                  value={product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
                 />
-              )}
+                <SidebarGroup label="Available" value={product.countInStock} />
+                {product.countInStock > 0 && (
+                  <SidebarGroup
+                    label="Qty"
+                    value={
+                      <select
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </select>
+                    }
+                  />
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                className="dark block"
+                disabled={product.countInStock === 0}
+              >
+                Add To Cart
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={handleAddToCart}
-              className="dark block"
-              disabled={product.countInStock === 0}
-            >
-              Add To Cart
-            </button>
           </div>
         </div>
       )}

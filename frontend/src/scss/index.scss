@@ -6,14 +6,16 @@
 
 @import "components/layout/header";
 @import "components/layout/navbar";
+@import "components/layout/grids";
+@import "components/layout/content";
 @import "components/layout/sidebar";
 @import "components/layout/footer";
 
 @import "components/products/products";
 @import "components/products/product-details";
-@import "components/products/shopping-cart";
 
-@import "components/shipping/checkout-steps";
+@import "components/checkout/checkout-steps";
 
 @import "components/shared/loader";
 @import "components/shared/message";
+@import "components/shared/shopping-cart";

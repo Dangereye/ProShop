@@ -1,12 +1,13 @@
 .shopping-cart {
-  padding: 2rem 0;
+  > .cart-item:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
 
   .cart-item {
     padding: 2rem;
     border: 1px solid $bgLight3;
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
 
     img {
       width: 8.5rem;
