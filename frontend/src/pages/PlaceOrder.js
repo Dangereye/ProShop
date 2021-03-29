@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "../actions/orderActions";
 import Message from "../components/shared/Message";
 import CheckoutSteps from "../components/checkout/CheckoutSteps";
 import ShoppingCart from "../components/shared/ShoppingCart";
 import SidebarGroup from "../components/sidebar/SidebarGroup";
 
-const PlaceOrder = () => {
+const PlaceOrder = ({ history }) => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -19,6 +20,7 @@ const PlaceOrder = () => {
       .reduce((acc, item) => acc + item.qty * item.price, 0)
       .toFixed(2)
   );
+
   const taxPrice = addDecimals(0.2 * itemsPrice);
   const shippingPrice = 4.99;
   const totalPrice = (
@@ -27,13 +29,33 @@ const PlaceOrder = () => {
     Number(shippingPrice)
   ).toFixed(2);
 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+  }, [history, success, order]);
+
   const handlePlaceOrder = () => {
-    console.log("Order placed");
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
+      })
+    );
   };
   return (
     <div className="container">
       <CheckoutSteps step1 step2 step3 step4 />
       <h1>Order Confirmation</h1>
+      {error && <Message text={error} error={true} />}
       <div className="sidebar-grid">
         <div className="content">
           <section>
