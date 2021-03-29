@@ -59,19 +59,18 @@ const PlaceOrder = ({ history }) => {
       <div className="sidebar-grid">
         <div className="content">
           <section>
-            <h2>Shipping Address</h2>
-            <p>
-              {cart.shippingAddress.address}, {cart.shippingAddress.city},{" "}
-              {cart.shippingAddress.postalCode.toUpperCase()},{" "}
-              {cart.shippingAddress.country}
-            </p>
+            <h2>Shipping Address:</h2>
+            <p>{cart.shippingAddress.address},</p>
+            <p>{cart.shippingAddress.city},</p>
+            <p>{cart.shippingAddress.postalCode.toUpperCase()},</p>
+            <p>{cart.shippingAddress.country}.</p>
           </section>
           <section>
-            <h2>Payment Method</h2>
+            <h2>Payment Method:</h2>
             <p>{cart.paymentMethod}</p>
           </section>
           <section>
-            <h2>Order Items</h2>
+            <h2>Items:</h2>
             {cart.cartItems.length > 0 ? (
               <ShoppingCart />
             ) : (
@@ -83,10 +82,10 @@ const PlaceOrder = ({ history }) => {
           <div className="sidebar__details">
             <h3>Order Summary</h3>
             <SidebarGroup label="Items" value={itemsQty} />
-            <SidebarGroup label="Price" value={`£${itemsPrice}`} />
+            <SidebarGroup label="Items price" value={`£${itemsPrice}`} />
             <SidebarGroup label="Tax" value={`£${taxPrice}`} />
             <SidebarGroup label="Shipping" value={`£${shippingPrice}`} />
-            <SidebarGroup label="Total" value={`£${totalPrice}`} />
+            <SidebarGroup label="Total price" value={`£${totalPrice}`} />
           </div>
           <button
             type="button"

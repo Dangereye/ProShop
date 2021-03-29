@@ -7,7 +7,6 @@ import { FaRegTrashAlt } from "react-icons/fa";
 const ShoppingCart = ({ history }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-
   const { cartItems } = cart;
 
   const handleRemoveFromCart = (id) => {
