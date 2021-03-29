@@ -1,3 +1,10 @@
+.profile-grid {
+  grid-template-columns: minmax(25rem, 1fr) 4fr;
+}
+.sidebar-grid {
+  grid-template-columns: 4fr minmax(25rem, 1fr);
+}
+
 .profile-grid,
 .sidebar-grid {
   display: grid;
@@ -6,11 +13,4 @@
   @media (max-width: 760px) {
     grid-template-columns: 1fr;
   }
-}
-
-.profile-grid {
-  grid-template-columns: minmax(25rem, 1fr) 4fr;
-}
-.sidebar-grid {
-  grid-template-columns: 4fr minmax(25rem, 1fr);
 }
