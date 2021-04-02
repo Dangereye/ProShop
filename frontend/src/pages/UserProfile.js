@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { Link } from "react-router-dom";
 import { listMyOrders } from "../actions/orderActions";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
@@ -130,19 +129,23 @@ const UserProfile = ({ location, history }) => {
                     key={order._id}
                     onClick={() => history.push(`/order/${order._id}`)}
                   >
-                    <td>#{order._id}</td>
-                    <td>
+                    <td className="id">#{order._id}</td>
+                    <td className="ordered">
                       <Dates date={order.createdAt} />
                     </td>
-                    <td>£{order.totalPrice}</td>
-                    <td className={order.isPaid ? "complete" : ""}>
+                    <td className="total">£{order.totalPrice}</td>
+                    <td className={order.isPaid ? "paid true" : "paid false"}>
                       {order.isPaid ? (
                         <Dates date={order.paidAt} />
                       ) : (
                         <FaTimes />
                       )}
                     </td>
-                    <td className={order.isDelivered ? "complete" : ""}>
+                    <td
+                      className={
+                        order.isDelivered ? "delivered true" : "delivered false"
+                      }
+                    >
                       {order.isDelivered ? (
                         <Dates date={order.deliveredAt} />
                       ) : (

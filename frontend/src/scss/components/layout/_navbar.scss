@@ -21,7 +21,7 @@ nav {
     display: flex;
     align-items: center;
 
-    > a:not(:last-child) {
+    > *:not(:last-child) {
       margin-right: 2rem;
     }
 

@@ -7,6 +7,7 @@ import { HiUser } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
 const Navbar = () => {
   const [isProfile, setIsProfile] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -46,6 +47,24 @@ const Navbar = () => {
             <HiUser />
             <span>Sign In</span>
           </Link>
+        )}
+        {userInfo.isAdmin && (
+          <div
+            className="nav-menu__user"
+            onClick={() => setIsAdmin(!isAdmin)}
+            onMouseEnter={() => setIsAdmin(!isAdmin)}
+            onMouseLeave={() => setIsAdmin(!isAdmin)}
+          >
+            <span>Admin</span>
+            <IoMdArrowDropdown />
+            {isAdmin && (
+              <div className="dropdown">
+                <Link to="/admin/userlist">Users</Link>
+                <Link to="/admin/productlist">Products</Link>
+                <Link to="/admin/orderlist">Orders</Link>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </nav>

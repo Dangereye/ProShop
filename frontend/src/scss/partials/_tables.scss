@@ -13,7 +13,6 @@ table {
     margin-top: 8px;
     width: 20px;
     height: 20px;
-    color: $dangerColor;
     align-self: center;
   }
 
@@ -36,8 +35,13 @@ table {
   td {
     padding: 1rem;
 
-    &.complete {
+    &.true {
       color: $successColor;
+      font-weight: 400;
+    }
+
+    &.false {
+      color: $dangerColor;
       font-weight: 400;
     }
   }
@@ -70,6 +74,7 @@ table {
         }
       }
     }
+
     td {
       display: flex;
       padding: 0;
@@ -81,20 +86,38 @@ table {
         color: $textDark2;
         font-weight: 500;
       }
-      &:nth-of-type(1):before {
+
+      // Pseudo headings
+      &.id:before {
         content: "ID";
       }
-      &:nth-of-type(2):before {
+
+      &.ordered:before {
         content: "Ordered";
       }
-      &:nth-of-type(3):before {
+
+      &.total:before {
         content: "Total";
       }
-      &:nth-of-type(4):before {
+
+      &.paid:before {
         content: "Paid";
       }
-      &:nth-of-type(5):before {
+
+      &.delivered:before {
         content: "Delivered";
+      }
+
+      &.name:before {
+        content: "Name";
+      }
+
+      &.email:before {
+        content: "Email";
+      }
+
+      &.admin:before {
+        content: "Admin";
       }
     }
   }
