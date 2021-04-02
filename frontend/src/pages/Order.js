@@ -111,9 +111,9 @@ const Order = ({ match }) => {
           </div>
           {!order.isPaid && (
             <>
-              {loadingPay && <Loader text="loading" />}
+              {loadingPay && <Loader text="Connecting" />}
               {!sdkReady ? (
-                <Loader text="loading" />
+                <Loader text="Connecting" />
               ) : (
                 <PayPalButton
                   amount={order.totalPrice}

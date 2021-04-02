@@ -1,0 +1,101 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  tr {
+    text-align: left;
+  }
+
+  th {
+    font-weight: 500;
+  }
+
+  svg {
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    color: $dangerColor;
+    align-self: center;
+  }
+
+  tbody {
+    tr {
+      transition: 0.4s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $bgLight2;
+      }
+
+      td {
+        border: 1px solid $bgLight3;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: 1rem;
+
+    &.complete {
+      color: $successColor;
+      font-weight: 400;
+    }
+  }
+
+  @media (max-width: 1120px) {
+    th {
+      display: none;
+    }
+
+    svg {
+      margin: 0;
+    }
+
+    tbody {
+      > tr:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      tr {
+        display: block;
+        padding: 2rem;
+        border: 1px solid $bgLight3;
+
+        td {
+          border: none;
+        }
+
+        > td:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    td {
+      display: flex;
+      padding: 0;
+
+      &::before {
+        flex: 1 1 50%;
+        margin-right: 0.5rem;
+        content: "";
+        color: $textDark2;
+        font-weight: 500;
+      }
+      &:nth-of-type(1):before {
+        content: "ID";
+      }
+      &:nth-of-type(2):before {
+        content: "Ordered";
+      }
+      &:nth-of-type(3):before {
+        content: "Total";
+      }
+      &:nth-of-type(4):before {
+        content: "Paid";
+      }
+      &:nth-of-type(5):before {
+        content: "Delivered";
+      }
+    }
+  }
+}
