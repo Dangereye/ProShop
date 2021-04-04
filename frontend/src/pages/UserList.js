@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listUsers } from "../actions/userActions";
+import { listUsers, deleteUser } from "../actions/userActions";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 import { FaTimes, FaCheck, FaRegTrashAlt } from "react-icons/fa";
@@ -14,17 +14,23 @@ const UserList = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success: deleteSuccess } = userDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers());
     } else {
       history.push("/login");
     }
-  }, [dispatch, history]);
+  }, [dispatch, history, userInfo, deleteSuccess]);
 
   const handleDeleteUser = (id) => {
-    console.log("delete");
+    if (window.confirm("Are you sure?")) {
+      dispatch(deleteUser(id));
+    }
   };
+
   const handleEditUser = (id) => {
     history.push(`/user/${id}/edit`);
   };
