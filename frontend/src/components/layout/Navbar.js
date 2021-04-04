@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 import { Link } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
 import { HiUser } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
+
 const Navbar = () => {
+  const history = useHistory();
   const [isProfile, setIsProfile] = useState(false);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout(history));
   };
 
   return (
