@@ -75,7 +75,7 @@ const Register = ({ location, history }) => {
           <div className="input-group">
             <label htmlFor="password">Confirm password</label>
             <input
-              type="password2"
+              type="password"
               id="password2"
               placeholder="Confirm password"
               value={confirmPassword}
