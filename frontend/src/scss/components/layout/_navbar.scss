@@ -57,7 +57,6 @@ nav {
 
     &__user {
       position: relative;
-      cursor: pointer;
       svg {
         margin-left: 0.5rem;
       }
@@ -69,6 +68,8 @@ nav {
         transform: translateX(-50%);
         background-color: $bgLight;
         border: 1px solid $bgLight3;
+        z-index: 999;
+
         > *:not(:last-child) {
           border-bottom: 1px solid $bgLight3;
         }
@@ -77,8 +78,9 @@ nav {
           display: block;
         }
 
-        div {
-          cursor: pointer;
+        h4 {
+          padding: 1rem 2rem;
+          background-color: $bgLight3;
         }
 
         a,
@@ -86,6 +88,7 @@ nav {
           padding: 1rem 6rem 1rem 2rem;
           text-transform: capitalize;
           color: $textDark2;
+          cursor: pointer;
 
           &:hover {
             background-color: $bgLight2;

@@ -16,12 +16,19 @@ h1 {
 h2 {
   font-weight: 300;
   font-style: italic;
+  margin-bottom: 2rem;
 }
 
 h3 {
   color: $textDark;
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+h4 {
+  color: $textDark;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 @media (max-width: 420px) {

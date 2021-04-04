@@ -19,6 +19,10 @@ img {
 body {
   font-size: 1.6rem;
   color: $textDark2;
+
+  @media (max-width: 420px) {
+    font-size: 1.4rem;
+  }
 }
 
 .app {

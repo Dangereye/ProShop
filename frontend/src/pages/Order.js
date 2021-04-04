@@ -65,7 +65,7 @@ const Order = ({ match }) => {
   };
 
   return loading ? (
-    <Loader text="One moment please" />
+    <Loader text="Fetching order" />
   ) : error ? (
     <Message text={error} error={true} />
   ) : (

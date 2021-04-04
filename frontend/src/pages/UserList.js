@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listUsers } from "../actions/userActions";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
-import { FaTimes, FaCheck, FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { FaTimes, FaCheck, FaRegTrashAlt } from "react-icons/fa";
+import { FiEdit3 } from "react-icons/fi";
 
-const UserList = () => {
+const UserList = ({ history }) => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
@@ -16,7 +16,10 @@ const UserList = () => {
   }, [dispatch]);
 
   const handleDeleteUser = (id) => {
-    console.log(id);
+    console.log("delete");
+  };
+  const handleEditUser = (id) => {
+    history.push(`/user/${id}/edit`);
   };
 
   return (
@@ -27,14 +30,14 @@ const UserList = () => {
       ) : error ? (
         <Message text={error} error />
       ) : (
-        <table>
+        <table className="full">
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
               <th>Email</th>
               <th>Admin</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -46,15 +49,15 @@ const UserList = () => {
                 <td className={user.isAdmin ? "admin true" : "admin false"}>
                   {user.isAdmin ? <FaCheck /> : <FaTimes />}
                 </td>
-                <td>
-                  <Link
-                    to={`/user/${user._id}/edit`}
-                    className="btn small dark"
-                  >
-                    <FaEdit />
-                  </Link>
+                <td className="actions">
                   <button
-                    className="small danger"
+                    className="icon edit"
+                    onClick={() => handleEditUser(user._id)}
+                  >
+                    <FiEdit3 />
+                  </button>
+                  <button
+                    className="icon delete"
                     onClick={() => handleDeleteUser(user._id)}
                   >
                     <FaRegTrashAlt />

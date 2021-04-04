@@ -1,34 +1,32 @@
 table {
   width: 100%;
   border-collapse: collapse;
+
   tr {
     text-align: left;
+
+    &:nth-of-type(odd) {
+      background-color: $bgLight;
+    }
+
+    &:nth-of-type(even) {
+      background-color: $bgLight2;
+    }
   }
 
   th {
     font-weight: 500;
   }
-
-  svg {
+  .paid svg,
+  .delivered svg,
+  .admin svg {
     margin-top: 8px;
     width: 20px;
     height: 20px;
-    align-self: center;
   }
 
   tbody {
-    tr {
-      transition: 0.4s;
-      cursor: pointer;
-
-      &:hover {
-        background-color: $bgLight2;
-      }
-
-      td {
-        border: 1px solid $bgLight3;
-      }
-    }
+    border: 1px solid $bgLight3;
   }
 
   th,
@@ -45,80 +43,104 @@ table {
       font-weight: 400;
     }
   }
+}
 
-  @media (max-width: 1120px) {
-    th {
-      display: none;
+@mixin minify {
+  th {
+    display: none;
+  }
+  .false svg,
+  .admin svg {
+    margin: 0;
+  }
+
+  tbody {
+    border: none;
+
+    > tr:not(:last-child) {
+      margin-bottom: 1.6rem;
     }
 
-    svg {
-      margin: 0;
-    }
+    tr {
+      display: block;
+      border: 1px solid $bgLight3;
 
-    tbody {
-      > tr:not(:last-child) {
-        margin-bottom: 1rem;
+      &:nth-of-type(even) {
+        background-color: $bgLight;
       }
 
-      tr {
-        display: block;
-        padding: 2rem;
-        border: 1px solid $bgLight3;
+      &:hover {
+        background-color: $bgLight;
+      }
 
-        td {
-          border: none;
-        }
-
-        > td:not(:last-child) {
-          margin-bottom: 1rem;
-        }
+      td {
+        padding: 1rem;
       }
     }
+  }
 
-    td {
-      display: flex;
-      padding: 0;
+  td {
+    display: flex;
+    align-items: center;
+    padding: 0;
 
-      &::before {
-        flex: 1 1 50%;
-        margin-right: 0.5rem;
-        content: "";
-        color: $textDark2;
-        font-weight: 500;
-      }
-
-      // Pseudo headings
-      &.id:before {
-        content: "ID";
-      }
-
-      &.ordered:before {
-        content: "Ordered";
-      }
-
-      &.total:before {
-        content: "Total";
-      }
-
-      &.paid:before {
-        content: "Paid";
-      }
-
-      &.delivered:before {
-        content: "Delivered";
-      }
-
-      &.name:before {
-        content: "Name";
-      }
-
-      &.email:before {
-        content: "Email";
-      }
-
-      &.admin:before {
-        content: "Admin";
-      }
+    &:nth-of-type(even) {
+      background-color: $bgLight2;
     }
+
+    &::before {
+      flex: 1 1 50%;
+      margin-right: 0.5rem;
+      content: "";
+      color: $textDark2;
+      font-weight: 500;
+    }
+
+    // Pseudo headings
+    &.id:before {
+      content: "ID";
+    }
+
+    &.created:before {
+      content: "Created";
+    }
+
+    &.price:before {
+      content: "Price";
+    }
+
+    &.paid:before {
+      content: "Paid";
+    }
+
+    &.delivered:before {
+      content: "Delivered";
+    }
+
+    &.name:before {
+      content: "Name";
+    }
+
+    &.email:before {
+      content: "Email";
+    }
+
+    &.admin:before {
+      content: "Admin";
+    }
+    &.actions:before {
+      content: "Actions";
+    }
+  }
+}
+
+table.split {
+  @media (max-width: 1155px) {
+    @include minify;
+  }
+}
+table.full {
+  @media (max-width: 900px) {
+    @include minify;
   }
 }

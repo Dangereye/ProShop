@@ -37,7 +37,7 @@ const ShoppingCart = ({ history }) => {
                 </select>
               </div>
               <button
-                className="cart-delete"
+                className="icon delete"
                 onClick={() => handleRemoveFromCart(item.id)}
               >
                 <FaRegTrashAlt />

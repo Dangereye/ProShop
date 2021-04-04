@@ -37,7 +37,7 @@ const Payment = ({ history }) => {
               onChange={(e) => setPaymentMethod(e.target.value)}
               checked
             />
-            <label htmlFor="PayPal">PayPal</label>
+            <label htmlFor="PayPal">PayPal / Credit or Debit card.</label>
           </div>
           <button type="submit" className="dark medium">
             Continue

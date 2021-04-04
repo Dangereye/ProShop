@@ -5,6 +5,7 @@ import { listMyOrders } from "../actions/orderActions";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 import { FaTimes } from "react-icons/fa";
+import { IoOpenOutline } from "react-icons/io5";
 import Dates from "../components/shared/Dates";
 
 const UserProfile = ({ location, history }) => {
@@ -113,27 +114,25 @@ const UserProfile = ({ location, history }) => {
           ) : errorOrders ? (
             <Message text={errorOrders} error />
           ) : (
-            <table className="my-orders">
+            <table className="split">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Ordered</th>
-                  <th>Total</th>
+                  <th>Created</th>
+                  <th>Price</th>
                   <th>Paid</th>
                   <th>Delivered</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {orders.map((order) => (
-                  <tr
-                    key={order._id}
-                    onClick={() => history.push(`/order/${order._id}`)}
-                  >
+                  <tr key={order._id}>
                     <td className="id">#{order._id}</td>
-                    <td className="ordered">
+                    <td className="created">
                       <Dates date={order.createdAt} />
                     </td>
-                    <td className="total">£{order.totalPrice}</td>
+                    <td className="price">£{order.totalPrice}</td>
                     <td className={order.isPaid ? "paid true" : "paid false"}>
                       {order.isPaid ? (
                         <Dates date={order.paidAt} />
@@ -151,6 +150,14 @@ const UserProfile = ({ location, history }) => {
                       ) : (
                         <FaTimes />
                       )}
+                    </td>
+                    <td className="actions">
+                      <button
+                        className="icon dark"
+                        onClick={() => history.push(`/order/${order._id}`)}
+                      >
+                        <IoOpenOutline />
+                      </button>
                     </td>
                   </tr>
                 ))}

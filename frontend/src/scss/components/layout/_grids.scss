@@ -10,6 +10,10 @@
   display: grid;
   gap: 3rem;
 
+  .orders {
+    padding: 2rem 0;
+  }
+
   @media (max-width: 760px) {
     grid-template-columns: 1fr;
   }
