@@ -32,7 +32,7 @@ const UserList = ({ history }) => {
   };
 
   const handleEditUser = (id) => {
-    history.push(`/user/${id}/edit`);
+    history.push(`/admin/user/${id}/edit`);
   };
 
   return (
