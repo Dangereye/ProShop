@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProducts, deleteProduct } from "../actions/productActions";
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from "../actions/productActions";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 import { FaPlus, FaRegTrashAlt } from "react-icons/fa";
@@ -14,16 +19,39 @@ const AdminProductList = ({ history, match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
+
   const productDelete = useSelector((state) => state.deleteProduct);
-  const { loading: loadingDelete, error: errorDelete, success } = productDelete;
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+    if (!userInfo.isAdmin) {
       history.push("/login");
     }
-  }, [dispatch, history, userInfo, success]);
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ]);
 
   const handleDeleteProduct = (id) => {
     if (window.confirm("Are you sure?")) {
@@ -35,8 +63,8 @@ const AdminProductList = ({ history, match }) => {
     history.push(`/admin/product/${id}/edit`);
   };
 
-  const handleAddProduct = (id) => {
-    console.log("Add");
+  const handleAddProduct = () => {
+    dispatch(createProduct());
   };
 
   return (
@@ -50,6 +78,8 @@ const AdminProductList = ({ history, match }) => {
       </div>
       {loadingDelete && <Loader text="Deleting product" />}
       {errorDelete && <Message text={errorDelete} error />}
+      {loadingCreate && <Loader text="Building product" />}
+      {errorCreate && <Message text={errorCreate} error />}
       {loading ? (
         <Loader text="Fetching products" />
       ) : error ? (

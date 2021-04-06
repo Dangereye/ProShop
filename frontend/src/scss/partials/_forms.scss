@@ -8,8 +8,11 @@
 }
 
 input,
-select {
+select,
+textarea {
   font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 300;
 }
 
 .input-group {
@@ -22,7 +25,6 @@ select {
   }
 
   input {
-    font-size: 1.6rem;
     width: 100%;
     padding: 1rem;
     border: none;
@@ -39,6 +41,25 @@ select {
   }
   input {
     margin-right: 1rem;
+  }
+}
+
+.textarea-group {
+  padding: 1rem 0;
+
+  label {
+    margin-bottom: 0.5rem;
+    display: block;
+    font-weight: 500;
+  }
+
+  textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 15rem;
+    padding: 1rem;
+    border: none;
+    background-color: $bgLight2;
   }
 }
 
