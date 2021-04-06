@@ -7,7 +7,7 @@ const getProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
-// Fetch single product - "/api/products/:id" - (public)
+// Fetch single product - GET "/api/products/:id" - (public)
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
@@ -18,4 +18,16 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProducts, getProductById };
+// Delete a product - DELETE "/api/products/:id" - (private/admin)
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    await product.remove();
+    res.json({ message: "Product successfully removed" });
+  } else {
+    res.status(404);
+    throw new Error("Product not found.");
+  }
+});
+
+export { getProducts, getProductById, deleteProduct };

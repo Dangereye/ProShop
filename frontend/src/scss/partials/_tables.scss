@@ -131,6 +131,12 @@ table {
     &.actions:before {
       content: "Actions";
     }
+    &.brand:before {
+      content: "Brand";
+    }
+    &.category:before {
+      content: "Category";
+    }
   }
 }
 
@@ -139,8 +145,15 @@ table.split {
     @include minify;
   }
 }
+
 table.full {
   @media (max-width: 900px) {
+    @include minify;
+  }
+}
+
+table.products-table {
+  @media (max-width: 1200px) {
     @include minify;
   }
 }

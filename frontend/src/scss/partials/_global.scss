@@ -72,3 +72,10 @@ main {
   width: 100%;
   max-width: $containerWidth;
 }
+
+.flex-group {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
