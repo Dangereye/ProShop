@@ -29,6 +29,29 @@ textarea {
     padding: 1rem;
     border: none;
     background-color: $bgLight2;
+
+    &#upload {
+      width: 20rem;
+      margin-top: 1rem;
+      padding: 0;
+      outline: none;
+      background-color: $bgLight;
+    }
+
+    &#upload::-webkit-file-upload-button {
+      display: none;
+    }
+
+    &#upload::before {
+      margin-right: 1rem;
+      content: "Browse";
+      display: inline-block;
+      padding: 1rem;
+      border-radius: 4px;
+      color: $textLight;
+      background-color: $bgDark;
+      cursor: pointer;
+    }
   }
 }
 

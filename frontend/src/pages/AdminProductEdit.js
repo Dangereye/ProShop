@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails, updateProduct } from "../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
@@ -14,6 +15,7 @@ const AdminProductEdit = ({ match, history }) => {
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
+  const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
@@ -25,6 +27,9 @@ const AdminProductEdit = ({ match, history }) => {
     error: errorUpdate,
     success: successUpdate,
   } = productUpdate;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
     if (successUpdate) {
@@ -44,6 +49,28 @@ const AdminProductEdit = ({ match, history }) => {
       }
     }
   }, [history, dispatch, productId, product, successUpdate]);
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
+    setUploading(true);
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      };
+
+      const { data } = await axios.post("/api/upload", formData, config);
+      setImage(data);
+      setUploading(false);
+    } catch (error) {
+      console.error(error);
+      setUploading(false);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -107,7 +134,7 @@ const AdminProductEdit = ({ match, history }) => {
               />
             </div>
             <div className="input-group">
-              <label htmlFor="image">Image</label>
+              <label htmlFor="image">Image URL</label>
               <input
                 type="text"
                 id="image"
@@ -115,6 +142,8 @@ const AdminProductEdit = ({ match, history }) => {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
+              <input type="file" id="upload" onChange={handleFileUpload} />
+              {uploading && <Loader text="Uploading image.." />}
             </div>
             <div className="input-group">
               <label htmlFor="brand">Brand</label>
