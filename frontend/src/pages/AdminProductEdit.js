@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listProductDetails } from "../actions/productActions";
+import { listProductDetails, updateProduct } from "../actions/productActions";
+import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 
@@ -18,23 +19,46 @@ const AdminProductEdit = ({ match, history }) => {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
+
   useEffect(() => {
-    if (!product.name || product._id !== productId) {
-      dispatch(listProductDetails(productId));
+    if (successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      history.push("/admin/productlist");
     } else {
-      setName(product.name);
-      setPrice(product.price);
-      setDescription(product.description);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
+      if (!product.name || product._id !== productId) {
+        dispatch(listProductDetails(productId));
+      } else {
+        setName(product.name);
+        setPrice(product.price);
+        setDescription(product.description);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+      }
     }
-  }, [history, dispatch, productId, product]);
+  }, [history, dispatch, productId, product, successUpdate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submit");
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        description,
+        image,
+        brand,
+        category,
+        countInStock,
+      })
+    );
   };
 
   return (
@@ -44,6 +68,8 @@ const AdminProductEdit = ({ match, history }) => {
       </button>
       <div className="form-container">
         <h1>Edit Product</h1>
+        {loadingUpdate && <Loader text="One moment please.." />}
+        {errorUpdate && <Message text={errorUpdate} error />}
         {loading ? (
           <Loader text="One moment please.." />
         ) : error ? (
