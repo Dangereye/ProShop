@@ -14,7 +14,7 @@ import Dates from "../components/shared/Dates";
 
 const ProductDetails = ({ history, match }) => {
   const [qty, setQty] = useState(1);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [formError, setFormError] = useState(null);
 
@@ -34,13 +34,13 @@ const ProductDetails = ({ history, match }) => {
   } = productCreateReview;
 
   useEffect(() => {
-    if (successReview) {
-      setRating(null);
+    if (successReview && !formError) {
+      setRating(0);
       setComment("");
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
     dispatch(listProductDetails(match.params.id));
-  }, [dispatch, match, successReview, formError]);
+  }, [dispatch, match, successReview, rating, comment, formError]);
 
   const handleAddToCart = () => {
     dispatch(addToCart(product._id, qty));
@@ -50,7 +50,7 @@ const ProductDetails = ({ history, match }) => {
   const handleWriteReview = (e) => {
     e.preventDefault();
     setFormError(null);
-    if (rating === null) {
+    if (rating === 0) {
       setFormError("Please add a rating");
     } else if (comment === "") {
       setFormError("Please add a comment");
@@ -114,9 +114,9 @@ const ProductDetails = ({ history, match }) => {
                       <select
                         id="rating"
                         value={rating}
-                        onChange={(e) => setRating(e.target.value)}
+                        onChange={(e) => setRating(+e.target.value)}
                       >
-                        <option value={null}>Select your rating</option>
+                        <option value="0">Select your rating</option>
                         <option value="0.5">Awful</option>
                         <option value="1">Very poor</option>
                         <option value="1.5">Poor</option>
