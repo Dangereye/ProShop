@@ -18,7 +18,7 @@ table {
     font-weight: 500;
   }
   .paid svg,
-  .delivered svg,
+  .shipped svg,
   .admin svg {
     margin-top: 8px;
     width: 20px;
@@ -113,8 +113,8 @@ table {
       content: "Paid";
     }
 
-    &.delivered:before {
-      content: "Delivered";
+    &.shipped:before {
+      content: "Shipped";
     }
 
     &.name:before {

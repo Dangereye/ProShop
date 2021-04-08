@@ -121,7 +121,7 @@ const UserProfile = ({ location, history }) => {
                   <th>Created</th>
                   <th>Price</th>
                   <th>Paid</th>
-                  <th>Delivered</th>
+                  <th>Shipped</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -142,11 +142,11 @@ const UserProfile = ({ location, history }) => {
                     </td>
                     <td
                       className={
-                        order.isDelivered ? "delivered true" : "delivered false"
+                        order.isShipped ? "shipped true" : "shipped false"
                       }
                     >
-                      {order.isDelivered ? (
-                        <Dates date={order.deliveredAt} />
+                      {order.isShipped ? (
+                        <Dates date={order.shippedAt} />
                       ) : (
                         <FaTimes />
                       )}

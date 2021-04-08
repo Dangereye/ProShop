@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderDetails, payOrder } from "../actions/orderActions";
-import { ORDER_PAY_RESET } from "../constants/orderConstants";
+import { getOrderDetails, payOrder, shipOrder } from "../actions/orderActions";
+import { ORDER_PAY_RESET, ORDER_SHIP_RESET } from "../constants/orderConstants";
 import Message from "../components/shared/Message";
 import Loader from "../components/shared/Loader";
 import OrderedProducts from "../components/shared/OrderedProducts";
 import SidebarGroup from "../components/sidebar/SidebarGroup";
 
-const Order = ({ match }) => {
+const Order = ({ match, history }) => {
   let itemsQty;
   let itemsPrice;
   const orderId = match.params.id;
@@ -20,8 +20,14 @@ const Order = ({ match }) => {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { loading, error, order } = orderDetails;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
+
+  const orderShip = useSelector((state) => state.orderShip);
+  const { loading: loadingShip, success: successShip } = orderShip;
 
   const addDecimals = (num) => {
     return parseFloat((num * 100) / 100).toFixed(2);
@@ -37,31 +43,40 @@ const Order = ({ match }) => {
   }
 
   useEffect(() => {
-    const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get("/api/config/paypal");
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      script.async = true;
-      script.onload = () => setSdkReady(true);
-      document.body.appendChild(script);
-    };
+    if (!userInfo) {
+      history.push("/login");
+    } else {
+      const addPayPalScript = async () => {
+        const { data: clientId } = await axios.get("/api/config/paypal");
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+        script.async = true;
+        script.onload = () => setSdkReady(true);
+        document.body.appendChild(script);
+      };
 
-    if (!order || order._id !== orderId || successPay) {
-      dispatch({ type: ORDER_PAY_RESET });
-      dispatch(getOrderDetails(orderId));
-    } else if (!order.isPaid) {
-      if (!window.paypal) {
-        addPayPalScript();
-      } else {
-        setSdkReady(true);
+      if (!order || order._id !== orderId || successPay || successShip) {
+        dispatch({ type: ORDER_PAY_RESET });
+        dispatch({ type: ORDER_SHIP_RESET });
+        dispatch(getOrderDetails(orderId));
+      } else if (!order.isPaid) {
+        if (!window.paypal) {
+          addPayPalScript();
+        } else {
+          setSdkReady(true);
+        }
       }
     }
-  }, [dispatch, orderId, order, successPay]);
+  }, [dispatch, orderId, order, successPay, successShip, history, userInfo]);
 
   const handleSuccessPayment = (paymentResult) => {
     console.log(paymentResult);
     dispatch(payOrder(orderId, paymentResult));
+  };
+
+  const handleShipOrder = () => {
+    dispatch(shipOrder(order));
   };
 
   return loading ? (
@@ -80,10 +95,10 @@ const Order = ({ match }) => {
             <p>{order.shippingAddress.city},</p>
             <p>{order.shippingAddress.postalCode.toUpperCase()},</p>
             <p>{order.shippingAddress.country}.</p>
-            {order.isDelivered ? (
-              <Message text={`Delivered on ${order.deliveredAt}`} success />
+            {order.isShipped ? (
+              <Message text={`Shipped on ${order.shippedAt}`} success />
             ) : (
-              <Message text="Not delivered" error />
+              <Message text="Not shipped" error />
             )}
           </section>
           <section>
@@ -121,6 +136,12 @@ const Order = ({ match }) => {
                 />
               )}
             </>
+          )}
+          {loadingShip && <Loader text="Processing" />}
+          {userInfo && userInfo.isAdmin && order.isPaid && !order.isShipped && (
+            <button className="block dark medium" onClick={handleShipOrder}>
+              Ship Order
+            </button>
           )}
         </div>
       </div>

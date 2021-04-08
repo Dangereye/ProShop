@@ -38,7 +38,7 @@ const AdminOrdersList = ({ history, match }) => {
               <th>Created</th>
               <th>Price</th>
               <th>Paid</th>
-              <th>Delivered</th>
+              <th>Shipped</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -55,12 +55,10 @@ const AdminOrdersList = ({ history, match }) => {
                   {order.isPaid ? <Dates date={order.paidAt} /> : <FaTimes />}
                 </td>
                 <td
-                  className={
-                    order.isDelivered ? "delivered true" : "delivered false"
-                  }
+                  className={order.isShipped ? "shipped true" : "shipped false"}
                 >
-                  {order.isDelivered ? (
-                    <Dates date={order.deliveredAt} />
+                  {order.isShipped ? (
+                    <Dates date={order.shippedAt} />
                   ) : (
                     <FaTimes />
                   )}
