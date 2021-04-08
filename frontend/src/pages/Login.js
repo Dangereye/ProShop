@@ -58,7 +58,7 @@ const Login = ({ location, history }) => {
             Sign In
           </button>
         </form>
-        <div className="x">
+        <div className="alternative-text">
           New Customer?{" "}
           <Link
             className="text-link"

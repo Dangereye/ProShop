@@ -86,7 +86,7 @@ const Register = ({ location, history }) => {
             Sign Up
           </button>
         </form>
-        <div className="x">
+        <div className="alternative-text">
           Existing customer?{" "}
           <Link
             className="text-link"
