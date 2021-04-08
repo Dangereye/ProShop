@@ -16,6 +16,7 @@ import AdminUserList from "./pages/AdminUserList";
 import AdminProductList from "./pages/AdminProductList";
 import AdminUserEdit from "./pages/AdminUserEdit";
 import AdminProductEdit from "./pages/AdminProductEdit";
+import AdminOrdersList from "./pages/AdminOrdersList";
 const App = () => {
   return (
     <Router>
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/payment" component={Payment} />
             <Route path="/placeorder" component={PlaceOrder} />
             <Route path="/order/:id" component={Order} />
+            <Route path="/admin/orderlist" component={AdminOrdersList} />
           </Switch>
         </main>
         <Footer />
