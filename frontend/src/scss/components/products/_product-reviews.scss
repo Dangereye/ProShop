@@ -1,0 +1,14 @@
+.product-reviews {
+  .reviews {
+    margin-bottom: 3rem;
+
+    > .review:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .review {
+    padding: 2rem;
+    border: 1px solid $bgLight3;
+  }
+}

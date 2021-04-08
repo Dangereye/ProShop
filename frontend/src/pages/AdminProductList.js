@@ -27,7 +27,7 @@ const AdminProductList = ({ history, match }) => {
     product: createdProduct,
   } = productCreate;
 
-  const productDelete = useSelector((state) => state.deleteProduct);
+  const productDelete = useSelector((state) => state.productDeleteProduct);
   const {
     loading: loadingDelete,
     error: errorDelete,

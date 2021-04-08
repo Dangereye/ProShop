@@ -1,8 +1,9 @@
 .content {
-  padding: 2rem 0;
-  //   border: 1px solid red;
-
   > section:not(:last-child) {
     margin-bottom: 3rem;
   }
+
+  // section {
+  //   border: 1px solid red;
+  // }
 }

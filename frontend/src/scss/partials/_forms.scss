@@ -87,9 +87,14 @@ textarea {
 }
 
 select {
-  padding: 0.6rem;
+  padding: 0.6rem 2rem 0.6rem 0.6rem;
   color: $textDark2;
   background-color: $bgLight2;
   border: none;
   outline: none;
+}
+
+.review-form {
+  border: 1px solid $bgLight3;
+  padding: 2rem;
 }

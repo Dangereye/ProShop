@@ -25,7 +25,7 @@ const UserProfile = ({ location, history }) => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-  const myOrders = useSelector((state) => state.myOrders);
+  const myOrders = useSelector((state) => state.orderMyOrders);
   const { loading: loadingOrders, error: errorOrders, orders } = myOrders;
 
   useEffect(() => {

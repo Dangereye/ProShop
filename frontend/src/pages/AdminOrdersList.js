@@ -9,7 +9,7 @@ import Dates from "../components/shared/Dates";
 
 const AdminOrdersList = ({ history, match }) => {
   const dispatch = useDispatch();
-  const allOrders = useSelector((state) => state.allOrders);
+  const allOrders = useSelector((state) => state.orderAllOrders);
   const { loading, error, orders } = allOrders;
 
   const userLogin = useSelector((state) => state.userLogin);

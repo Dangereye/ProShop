@@ -81,7 +81,7 @@ export const orderShipReducer = (state = {}, action) => {
   }
 };
 
-export const myOrdersReducer = (state = { orders: [] }, action) => {
+export const orderMyOrdersReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_MY_ORDERS_REQUEST:
       return { loading: true };
@@ -96,7 +96,7 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
   }
 };
 
-export const allOrdersReducer = (state = { orders: [] }, action) => {
+export const orderAllOrdersReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_ALL_ORDERS_REQUEST:
       return { loading: true };
