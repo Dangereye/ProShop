@@ -13,7 +13,6 @@ nav {
 
   .logo {
     color: $textLight;
-    font-size: 1.8rem;
     font-weight: 500;
   }
 
@@ -49,7 +48,7 @@ nav {
       }
     }
 
-    &__Link {
+    &__link {
       svg {
         margin-right: 0.5rem;
       }

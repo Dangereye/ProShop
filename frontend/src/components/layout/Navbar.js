@@ -6,9 +6,11 @@ import { Link } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
 import { HiUser } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const history = useHistory();
+  const [isSearch, setIsSearch] = useState();
   const [isProfile, setIsProfile] = useState(false);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
@@ -24,6 +26,7 @@ const Navbar = () => {
         ProShop
       </Link>
       <div className="nav-menu">
+        <SearchBar isSearch={isSearch} setIsSearch={setIsSearch} />
         <Link className="nav-menu__link" to="/cart">
           <MdShoppingCart />
           <span>Cart</span>

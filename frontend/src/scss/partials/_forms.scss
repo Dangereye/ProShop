@@ -17,6 +17,55 @@ textarea {
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   font-weight: 300;
+
+  &::placeholder {
+    color: #ccc;
+  }
+}
+
+.search-group {
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: $bgLight;
+  border-bottom: 1px solid $bgLight3;
+  transform: translateY(-110%);
+  transition: 0.4s;
+  .container {
+    position: relative;
+  }
+  input {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    outline: none;
+  }
+
+  svg.close-icon {
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  &.open {
+    transform: translateY(0);
+  }
+}
+
+svg.search-icon {
+  fill: $textLight3;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    fill: $textLight;
+  }
 }
 
 .input-group {
