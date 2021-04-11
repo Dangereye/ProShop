@@ -1,0 +1,26 @@
+.pagination {
+  padding: 2rem 0;
+
+  > a:not(:last-child) {
+    margin-right: 2px;
+  }
+
+  a {
+    padding: 1rem;
+    color: $textDark2;
+    border: 1px solid $bgLight3;
+    transition: 0.4s;
+
+    &:hover {
+      color: $textLight;
+      background-color: $bgDark;
+      border-color: $bgDark;
+    }
+
+    &.active {
+      color: $textLight;
+      background-color: $bgDark;
+      border-color: $bgDark;
+    }
+  }
+}

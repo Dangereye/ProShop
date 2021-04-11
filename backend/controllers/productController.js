@@ -3,6 +3,8 @@ import Product from "../models/productModel.js";
 
 // Fetch all products - "/api/products" - (public)
 const getProducts = asyncHandler(async (req, res) => {
+  const pageSize = 2;
+  const page = +req.query.pageNumber || 1;
   const keyword = req.query.keyword
     ? {
         $or: [
@@ -27,8 +29,11 @@ const getProducts = asyncHandler(async (req, res) => {
         ],
       }
     : {};
-  const products = await Product.find({ ...keyword });
-  res.json(products);
+  const productCount = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.json({ products, page, pages: Math.ceil(productCount / pageSize) });
 });
 
 // Fetch single product - GET "/api/products/:id" - (public)
