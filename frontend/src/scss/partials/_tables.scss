@@ -75,6 +75,7 @@ table {
 
       td {
         padding: 1rem;
+        text-align: right;
       }
     }
   }
@@ -94,6 +95,7 @@ table {
       content: "";
       color: $textDark2;
       font-weight: 500;
+      text-align: left;
     }
 
     // Pseudo headings

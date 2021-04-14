@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../actions/productActions";
 import Pagination from "../components/products/Pagination";
 import Product from "../components/products/Product";
+import ProductCarousel from "../components/products/ProductCarousel";
 import Loader from "../components/shared/Loader";
 import Message from "../components/shared/Message";
 
@@ -19,6 +20,7 @@ const Home = ({ match }) => {
 
   return (
     <div className="container">
+      {!keyword && <ProductCarousel />}
       <h1>Latest Products</h1>
 
       {loading ? (

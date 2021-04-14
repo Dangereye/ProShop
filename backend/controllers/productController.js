@@ -3,7 +3,7 @@ import Product from "../models/productModel.js";
 
 // Fetch all products - "/api/products" - (public)
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 2;
+  const pageSize = 10;
   const page = +req.query.pageNumber || 1;
   const keyword = req.query.keyword
     ? {
@@ -139,6 +139,12 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+// Get top rated products - GET "/api/products/top" - (public)
+const getTopRatedProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(4);
+  res.json(products);
+});
+
 export {
   getProducts,
   getProductById,
@@ -146,4 +152,5 @@ export {
   createProduct,
   updateProduct,
   createProductReview,
+  getTopRatedProducts,
 };
