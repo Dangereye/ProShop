@@ -31,7 +31,8 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
-header,
+nav,
+.search-group,
 main,
 footer {
   padding-left: $desktopPadding;

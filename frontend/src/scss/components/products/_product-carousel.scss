@@ -146,17 +146,16 @@
       width: 3.2rem;
       height: 3.2rem;
 
-      transition: 0.4s;
-
       polygon {
         fill: $textLight3;
+        transition: 0.4s;
       }
     }
 
     &:hover {
       svg {
         polygon {
-          fill: $textLight;
+          fill: $accentColor;
         }
       }
     }

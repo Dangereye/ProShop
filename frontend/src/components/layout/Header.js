@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
+  const [isSearch, setIsSearch] = useState();
   return (
     <header>
-      <div className="container">
-        <Navbar />
-      </div>
+      <Navbar setIsSearch={setIsSearch} />
+      <SearchBar isSearch={isSearch} setIsSearch={setIsSearch} />
     </header>
   );
 };
