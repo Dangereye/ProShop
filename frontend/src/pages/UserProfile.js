@@ -7,6 +7,7 @@ import Message from "../components/shared/Message";
 import { FaTimes } from "react-icons/fa";
 import { IoOpenOutline } from "react-icons/io5";
 import Dates from "../components/shared/Dates";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 const UserProfile = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -32,7 +33,8 @@ const UserProfile = ({ location, history }) => {
     if (!userInfo) {
       history.push("/login");
     } else {
-      if (!user.name) {
+      if (!user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
@@ -40,7 +42,7 @@ const UserProfile = ({ location, history }) => {
         setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user, success]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

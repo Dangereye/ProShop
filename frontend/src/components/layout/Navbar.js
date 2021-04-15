@@ -38,7 +38,7 @@ const Navbar = () => {
             onMouseEnter={() => setIsProfile(!isProfile)}
             onMouseLeave={() => setIsProfile(!isProfile)}
           >
-            <span>{userInfo.name}</span>
+            <span>{userInfo.name.split(" ")[0]}</span>
             <IoMdArrowDropdown />
             {isProfile && (
               <div className="dropdown">
