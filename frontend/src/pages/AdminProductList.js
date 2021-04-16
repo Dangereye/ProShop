@@ -6,10 +6,10 @@ import {
   createProduct,
 } from "../actions/productActions";
 import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
-import Loader from "../components/shared/Loader";
-import Message from "../components/shared/Message";
 import { FaPlus, FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
+import Message from "../components/shared/Message";
 import Pagination from "../components/products/Pagination";
 
 const AdminProductList = ({ history, match }) => {
@@ -72,23 +72,26 @@ const AdminProductList = ({ history, match }) => {
 
   return (
     <div className="container">
-      <div className="flex-group">
-        <h1>Products</h1>
-        <button className="icon-text edit medium" onClick={handleAddProduct}>
-          <FaPlus />
-          <span>Create</span>
-        </button>
-      </div>
-      {loadingDelete && <Loader text="Deleting product" />}
+      {loadingDelete && <LoaderFullScreen />}
       {errorDelete && <Message text={errorDelete} error />}
-      {loadingCreate && <Loader text="Building product" />}
+      {loadingCreate && <LoaderFullScreen />}
       {errorCreate && <Message text={errorCreate} error />}
       {loading ? (
-        <Loader text="Fetching products" />
+        <LoaderFullScreen />
       ) : error ? (
         <Message text={error} error />
       ) : (
         <>
+          <div className="flex-group">
+            <h1>Products</h1>
+            <button
+              className="icon-text edit medium"
+              onClick={handleAddProduct}
+            >
+              <FaPlus />
+              <span>Create</span>
+            </button>
+          </div>
           <table className="products-table">
             <thead>
               <tr>

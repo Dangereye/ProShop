@@ -86,15 +86,15 @@ const PlaceOrder = ({ history }) => {
             <SidebarGroup label="Tax" value={`£${taxPrice}`} />
             <SidebarGroup label="Shipping" value={`£${shippingPrice}`} />
             <SidebarGroup label="Total price" value={`£${totalPrice}`} />
+            <button
+              type="button"
+              className="dark block"
+              disabled={cart.cartItems.length === 0}
+              onClick={handlePlaceOrder}
+            >
+              Place Order
+            </button>
           </div>
-          <button
-            type="button"
-            className="dark block"
-            disabled={cart.cartItems.length === 0}
-            onClick={handlePlaceOrder}
-          >
-            Place Order
-          </button>
         </div>
       </div>
     </div>

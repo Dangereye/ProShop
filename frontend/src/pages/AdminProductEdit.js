@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductDetails, updateProduct } from "../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
-import Loader from "../components/shared/Loader";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
 import Message from "../components/shared/Message";
 
 const AdminProductEdit = ({ match, history }) => {
@@ -90,98 +90,103 @@ const AdminProductEdit = ({ match, history }) => {
 
   return (
     <div className="container">
-      <button className="btn back small light" onClick={() => history.goBack()}>
-        Go Back
-      </button>
-      <div className="form-container">
-        <h1>Edit Product</h1>
-        {loadingUpdate && <Loader text="One moment please.." />}
-        {errorUpdate && <Message text={errorUpdate} error />}
-        {loading ? (
-          <Loader text="One moment please.." />
-        ) : error ? (
-          <Message text={error} error={true} />
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="price">Price</label>
-              <input
-                type="number"
-                id="price"
-                placeholder="Enter price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </div>
-            <div className="textarea-group">
-              <label htmlFor="description">Description</label>
-              <textarea
-                id="description"
-                placeholder="Enter product description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                resize="none"
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="image">Image URL</label>
-              <input
-                type="text"
-                id="image"
-                placeholder="/images/default.jpg"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              />
-              <input type="file" id="upload" onChange={handleFileUpload} />
-              {uploading && <Loader text="Uploading image.." />}
-            </div>
-            <div className="input-group">
-              <label htmlFor="brand">Brand</label>
-              <input
-                type="text"
-                id="brand"
-                placeholder="Enter brand"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="category">Category</label>
-              <input
-                type="text"
-                id="category"
-                placeholder="Enter category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="countInStock">Count in stock</label>
-              <input
-                type="number"
-                id="countInStock"
-                placeholder="Enter count in stock"
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-              />
-            </div>
+      {loadingUpdate && <LoaderFullScreen />}
+      {errorUpdate && <Message text={errorUpdate} error />}
+      {loading ? (
+        <LoaderFullScreen />
+      ) : error ? (
+        <Message text={error} error={true} />
+      ) : (
+        <>
+          <button
+            className="btn back small light"
+            onClick={() => history.goBack()}
+          >
+            Go Back
+          </button>
+          <div className="form-container">
+            <h1>Edit Product</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="price">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  placeholder="Enter price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+              <div className="textarea-group">
+                <label htmlFor="description">Description</label>
+                <textarea
+                  id="description"
+                  placeholder="Enter product description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  resize="none"
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="image">Image URL</label>
+                <input
+                  type="text"
+                  id="image"
+                  placeholder="/images/default.jpg"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                />
+                <input type="file" id="upload" onChange={handleFileUpload} />
+                {uploading && <LoaderFullScreen />}
+              </div>
+              <div className="input-group">
+                <label htmlFor="brand">Brand</label>
+                <input
+                  type="text"
+                  id="brand"
+                  placeholder="Enter brand"
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="category">Category</label>
+                <input
+                  type="text"
+                  id="category"
+                  placeholder="Enter category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="countInStock">Count in stock</label>
+                <input
+                  type="number"
+                  id="countInStock"
+                  placeholder="Enter count in stock"
+                  value={countInStock}
+                  onChange={(e) => setCountInStock(e.target.value)}
+                />
+              </div>
 
-            <button type="submit" className="medium dark">
-              Update
-            </button>
-          </form>
-        )}
-      </div>
+              <button type="submit" className="medium dark">
+                Update
+              </button>
+            </form>
+          </div>
+        </>
+      )}
     </div>
   );
 };

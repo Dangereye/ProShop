@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { listMyOrders } from "../actions/orderActions";
-import Loader from "../components/shared/Loader";
-import Message from "../components/shared/Message";
 import { FaTimes } from "react-icons/fa";
 import { IoOpenOutline } from "react-icons/io5";
-import Dates from "../components/shared/Dates";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
+import Message from "../components/shared/Message";
+import Dates from "../components/shared/Dates";
 
 const UserProfile = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -59,7 +59,7 @@ const UserProfile = ({ location, history }) => {
       <div className="profile-grid">
         <div className="form-container">
           <h2>User Profile</h2>
-          {loading && <Loader text="Fetching user" />}
+          {loading && <LoaderFullScreen />}
           {message && <Message text={message} error={true} />}
           {success && <Message text="Profile updated." success={true} />}
           {error && <Message text={error} error={true} />}
@@ -112,7 +112,7 @@ const UserProfile = ({ location, history }) => {
         <div className="orders">
           <h2>My Orders</h2>
           {loadingOrders ? (
-            <Loader text="Fetching orders" />
+            <LoaderFullScreen />
           ) : errorOrders ? (
             <Message text={errorOrders} error />
           ) : (

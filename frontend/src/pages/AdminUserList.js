@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listUsers, deleteUser } from "../actions/userActions";
-import Loader from "../components/shared/Loader";
-import Message from "../components/shared/Message";
 import { FaTimes, FaCheck, FaRegTrashAlt } from "react-icons/fa";
 import { FiEdit3 } from "react-icons/fi";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
+import Message from "../components/shared/Message";
 
 const UserList = ({ history }) => {
   const dispatch = useDispatch();
@@ -37,49 +37,51 @@ const UserList = ({ history }) => {
 
   return (
     <div className="container">
-      <h1>Users</h1>
       {loading ? (
-        <Loader text="Fetching users" />
+        <LoaderFullScreen />
       ) : error ? (
         <Message text={error} error />
       ) : (
-        <table className="full">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Admin</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td className="id">#{user._id}</td>
-                <td className="name">{user.name}</td>
-                <td className="email">{user.email}</td>
-                <td className={user.isAdmin ? "admin true" : "admin false"}>
-                  {user.isAdmin ? <FaCheck /> : <FaTimes />}
-                </td>
-                <td className="actions">
-                  <button
-                    className="icon edit"
-                    onClick={() => handleEditUser(user._id)}
-                  >
-                    <FiEdit3 />
-                  </button>
-                  <button
-                    className="icon delete"
-                    onClick={() => handleDeleteUser(user._id)}
-                  >
-                    <FaRegTrashAlt />
-                  </button>
-                </td>
+        <>
+          <h1>Users</h1>
+          <table className="full">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user._id}>
+                  <td className="id">#{user._id}</td>
+                  <td className="name">{user.name}</td>
+                  <td className="email">{user.email}</td>
+                  <td className={user.isAdmin ? "admin true" : "admin false"}>
+                    {user.isAdmin ? <FaCheck /> : <FaTimes />}
+                  </td>
+                  <td className="actions">
+                    <button
+                      className="icon edit"
+                      onClick={() => handleEditUser(user._id)}
+                    >
+                      <FiEdit3 />
+                    </button>
+                    <button
+                      className="icon delete"
+                      onClick={() => handleDeleteUser(user._id)}
+                    >
+                      <FaRegTrashAlt />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
     </div>
   );

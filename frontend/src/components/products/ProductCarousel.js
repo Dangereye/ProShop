@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Loader from "../shared/Loader";
 import Message from "../shared/Message";
 import { listTopRatedProducts } from "../../actions/productActions";
 import { FcPrevious, FcNext } from "react-icons/fc";
+import LoaderFullScreen from "../shared/LoaderFullScreen";
 
 const ProductCarousel = () => {
   const [currentItem, setCurrentItem] = useState(1);
@@ -41,7 +41,7 @@ const ProductCarousel = () => {
   };
 
   return loading ? (
-    <Loader text="Fetching products" />
+    <LoaderFullScreen />
   ) : error ? (
     <Message text={error} error />
   ) : (

@@ -12,6 +12,7 @@ import Message from "../components/shared/Message";
 import SidebarGroup from "../components/sidebar/SidebarGroup";
 import Dates from "../components/shared/Dates";
 import Meta from "../components/shared/Meta";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
 
 const ProductDetails = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -63,7 +64,7 @@ const ProductDetails = ({ history, match }) => {
   return (
     <>
       {loading ? (
-        <Loader text="Fetching product details." />
+        <LoaderFullScreen />
       ) : error ? (
         <Message text={error} error={true} />
       ) : (
@@ -185,15 +186,15 @@ const ProductDetails = ({ history, match }) => {
                       }
                     />
                   )}
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="dark block"
+                    disabled={product.countInStock === 0}
+                  >
+                    Add To Cart
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleAddToCart}
-                  className="dark block"
-                  disabled={product.countInStock === 0}
-                >
-                  Add To Cart
-                </button>
               </div>
             </div>
           </div>

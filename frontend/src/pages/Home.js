@@ -4,7 +4,7 @@ import { listProducts } from "../actions/productActions";
 import Pagination from "../components/products/Pagination";
 import Product from "../components/products/Product";
 import ProductCarousel from "../components/products/ProductCarousel";
-import Loader from "../components/shared/Loader";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
 import Message from "../components/shared/Message";
 import Meta from "../components/shared/Meta";
 
@@ -33,14 +33,14 @@ const Home = ({ match, history }) => {
             Go Back
           </button>
         )}
-        <h1>Latest Products</h1>
 
         {loading ? (
-          <Loader text="Fetching products.." />
+          <LoaderFullScreen />
         ) : error ? (
           <Message text={error} error={true} />
         ) : (
           <>
+            <h1>Latest Products</h1>
             {keyword && <p>Results matching {keyword}</p>}
             <div className="products">
               {products.map((product, index) => {

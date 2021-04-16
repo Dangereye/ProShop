@@ -36,15 +36,15 @@ const Cart = ({ history }) => {
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}`}
             />
+            <button
+              type="button"
+              className="dark block"
+              disabled={cartItems.length === 0}
+              onClick={handleCheckout}
+            >
+              Proceed To Checkout
+            </button>
           </div>
-          <button
-            type="button"
-            className="dark block"
-            disabled={cartItems.length === 0}
-            onClick={handleCheckout}
-          >
-            Proceed To Checkout
-          </button>
         </div>
       </div>
     </div>

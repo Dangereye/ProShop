@@ -6,6 +6,7 @@ import { getOrderDetails, payOrder, shipOrder } from "../actions/orderActions";
 import { ORDER_PAY_RESET, ORDER_SHIP_RESET } from "../constants/orderConstants";
 import Message from "../components/shared/Message";
 import Loader from "../components/shared/Loader";
+import LoaderFullScreen from "../components/shared/LoaderFullScreen";
 import OrderedProducts from "../components/shared/OrderedProducts";
 import SidebarGroup from "../components/sidebar/SidebarGroup";
 
@@ -80,7 +81,7 @@ const Order = ({ match, history }) => {
   };
 
   return loading ? (
-    <Loader text="Fetching order" />
+    <LoaderFullScreen />
   ) : error ? (
     <Message text={error} error={true} />
   ) : (
@@ -123,26 +124,25 @@ const Order = ({ match, history }) => {
             <SidebarGroup label="Tax" value={`£${order.taxPrice}`} />
             <SidebarGroup label="Shipping" value={`£${order.shippingPrice}`} />
             <SidebarGroup label="Total price" value={`£${order.totalPrice}`} />
-          </div>
-          {!order.isPaid && (
-            <>
-              {loadingPay && <Loader text="Connecting" />}
-              {!sdkReady ? (
-                <Loader text="Connecting" />
-              ) : (
+            {!order.isPaid && loadingPay ? (
+              <Loader text="Connecting" />
+            ) : !sdkReady ? (
+              <Loader text="Connecting" />
+            ) : (
+              <span>
                 <PayPalButton
                   amount={order.totalPrice}
                   onSuccess={handleSuccessPayment}
                 />
-              )}
-            </>
-          )}
-          {loadingShip && <Loader text="Processing" />}
-          {userInfo && userInfo.isAdmin && order.isPaid && !order.isShipped && (
-            <button className="block dark medium" onClick={handleShipOrder}>
-              Ship Order
-            </button>
-          )}
+              </span>
+            )}
+            {loadingShip && <Loader text="Processing" />}
+            {userInfo && userInfo.isAdmin && order.isPaid && !order.isShipped && (
+              <button className="block dark medium" onClick={handleShipOrder}>
+                Ship Order
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
