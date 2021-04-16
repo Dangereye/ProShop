@@ -8,7 +8,6 @@ import LoaderFullScreen from "../shared/LoaderFullScreen";
 
 const ProductCarousel = () => {
   const [currentItem, setCurrentItem] = useState(1);
-  console.log("Current Item:", currentItem);
   const [translate, setTranslate] = useState(0);
   const dispatch = useDispatch();
 
