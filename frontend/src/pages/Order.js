@@ -124,17 +124,21 @@ const Order = ({ match, history }) => {
             <SidebarGroup label="Tax" value={`£${order.taxPrice}`} />
             <SidebarGroup label="Shipping" value={`£${order.shippingPrice}`} />
             <SidebarGroup label="Total price" value={`£${order.totalPrice}`} />
-            {!order.isPaid && loadingPay ? (
-              <Loader text="Connecting" />
-            ) : !sdkReady ? (
-              <Loader text="Connecting" />
-            ) : (
-              <span>
-                <PayPalButton
-                  amount={order.totalPrice}
-                  onSuccess={handleSuccessPayment}
-                />
-              </span>
+            {!order.isPaid && (
+              <>
+                {loadingPay ? (
+                  <Loader text="Connecting" />
+                ) : !sdkReady ? (
+                  <Loader text="Connecting" />
+                ) : (
+                  <span>
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={handleSuccessPayment}
+                    />
+                  </span>
+                )}
+              </>
             )}
             {loadingShip && <Loader text="Processing" />}
             {userInfo && userInfo.isAdmin && order.isPaid && !order.isShipped && (
